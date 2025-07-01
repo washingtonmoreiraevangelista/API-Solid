@@ -1,0 +1,56 @@
+
+# criar o container do banco de dados PostgreSQL  em vez de usar o comando docker run mesmo comando abaixo 
+# para criar o container do banco de dados PostgreSQL, você pode usar o seguinte comando:
+#docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgresql
+
+#converto o o comando acima para esse codigo abaixo que é o docker-compose.yml
+
+
+# Comandos para Gerenciamento de Contêineres:
+
+# docker run: Cria e inicia um novo contêiner a partir de uma imagem. 
+# docker ps: Lista os contêineres em execução. Use -a para listar todos, incluindo os parados. 
+# docker stop <container_id_ou_nome>: Para um contêiner em execução. 
+# docker start <container_id_ou_nome>: Inicia um contêiner parado. 
+# docker restart <container_id_ou_nome>: Reinicia um contêiner. 
+# docker rm <container_id_ou_nome>: Remove um ou mais contêineres. 
+# docker exec -it <container_id_ou_nome> <comando>: Executa um comando dentro de um contêiner em execução. 
+# docker attach <container_id_ou_nome>: Conecta-se a um contêiner em execução. 
+# docker logs <container_id_ou_nome>: Exibe os logs de um contêiner. 
+# Comandos para Gerenciamento de Imagens:
+
+# docker images: Lista as imagens disponíveis localmente. 
+
+# docker pull <nome_da_imagem>: Baixa uma imagem do Docker Hub ou de outro registro. 
+# docker build -t <nome_da_imagem> .: Cria uma nova imagem a partir de um Dockerfile. 
+# docker rmi <image_id_ou_nome>: Remove uma ou mais imagens. 
+# docker save -o <arquivo.tar> <nome_da_imagem>: Salva uma imagem em um arquivo tar. 
+# docker load -i <arquivo.tar>: Carrega uma imagem de um arquivo tar. 
+# Comandos para Gerenciamento de Redes e Volumes: 
+# docker network: Comando para gerenciar redes.
+# docker volume: Comando para gerenciar volumes. 
+# Comandos para Gerenciamento do Sistema:
+# docker system: Fornece informações sobre o ambiente Docker. 
+
+# docker stats: Mostra estatísticas de uso de recursos de contêineres em tempo real. 
+
+# Opções Comuns:
+# -d (detached): Executa o contêiner em segundo plano.
+# -p (port): Mapeia portas do contêiner para a máquina host.
+# -v (volume): Monta um volume no contêiner.
+# --name: Define um nome para o contêiner.
+# -a (all): Usado com docker ps para listar todos os contêineres.
+# -q (quiet): Usado com docker ps para listar apenas os IDs dos contêineres. 
+
+
+version: '3.8'
+
+services:
+  api-solid-pg:
+    image: bitnami/postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=apisolid
