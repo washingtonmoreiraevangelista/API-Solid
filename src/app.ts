@@ -1,13 +1,10 @@
 import fastify from 'fastify'
-import { PrismaClient } from '@prisma/client'
+import { appRoutes } from './routes/routes'
+import { setGlobalErrorHandler } from './errors/global.error'
 
 export const app = fastify()
 
-const prisma = new PrismaClient()
 
-prisma.user.create({
-  data: {
-    name: 'ola',
-    email: 'teste@teste.com',
-  },
-})
+app.register(appRoutes)
+
+setGlobalErrorHandler(app)
