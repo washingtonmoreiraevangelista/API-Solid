@@ -1,6 +1,6 @@
 import { env } from '@/env'
 import { FastifyInstance } from 'fastify'
-import { ZodError } from 'zod/dist/types/v3/ZodError'
+import { ZodError } from 'zod'
 
 export function setGlobalErrorHandler(app: FastifyInstance) {
   app.setErrorHandler((error, _request, reply) => {

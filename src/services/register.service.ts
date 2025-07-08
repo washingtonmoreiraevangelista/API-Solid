@@ -1,7 +1,7 @@
 import { User } from '@/interface/user'
 import { hash } from 'bcryptjs'
-import { UsersRepository } from '@/repository/user.repository'
 import { UserError } from '@/errors/user.error'
+import { PrismaUsersRepository } from '@/repository/prisma/prisma-user.repository'
 
 
 // 	Regras de negócio e lógica da aplicação
@@ -18,7 +18,7 @@ export class Service {
 
   //inverte dependencia e poder migrar facilmente para outro banco de dados usamos classes com solid
   constructor(
-    private usersRepository: UsersRepository
+    private usersRepository: PrismaUsersRepository
   ) { }
 
 

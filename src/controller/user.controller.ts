@@ -1,5 +1,4 @@
-import { UsersRepository } from '@/repository/user.repository'
-import { Service } from '@/services/user.service'
+import { makeService } from '@/factories/centerService'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -14,6 +13,8 @@ import { z } from 'zod'
 
 // Retorna a resposta para o cliente (reply.send()).
 
+//acesso meio externo
+
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchena = z.object({
     name: z.string(),
@@ -25,7 +26,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
   try {
 
-    const service = new Service(new UsersRepository())
+    const service = makeService()
 
     await service.createUser({
       name,

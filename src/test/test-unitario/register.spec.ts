@@ -1,26 +1,32 @@
-import { expect, describe, it, beforeEach } from 'vitest'
-import { Service } from '../../services/user.service'
-import { compare } from 'bcryptjs'
-import { InMemoryRepository } from '@/test/test-unitario/memory.repository'
 import { UserError } from '@/errors/user.error'
+import { InMemoryRepository } from '@/test/memory.repository'
+import { compare } from 'bcryptjs'
+import { beforeEach, describe, expect, it } from 'vitest'
+import { Service } from '../../services/register.service'
 
 // test unitario: nunca deve depender de banco de dados ou api externa
 // o teste deve ser isolado, não deve depender de banco de dados ou api externa
+//it.only permite que o teste seja executado isoladamente, sem executar os outros testes
+//it.skip permite que o teste seja pulado, sem executá-lo
+
+let sut: Service
+let usersRepository: InMemoryRepository
 
 describe('User Service', () => {
 
   let service: Service
 
   beforeEach(() => {
-    const usersRepository = new InMemoryRepository()
-    service = new Service(usersRepository)
+    usersRepository = new InMemoryRepository()
+    sut = new Service(usersRepository)
+
   })
 
 
   // teste se o usuário foi registrado corretamente
   it('should be able to register', async () => {
 
-    const { user } = await service.createUser({
+    const { user } = await sut.createUser({
       name: 'Joh Doe',
       email: 'jog@gmail.com',
       password: '123456'
@@ -34,7 +40,7 @@ describe('User Service', () => {
   // teste se a senha foi criptografada corretamente
   it('should hash password correctly', async () => {
 
-    const { user } = await service.createUser({
+    const { user } = await sut.createUser({
       name: 'Joh Doe',
       email: 'jog@gmail.com',
       password: '123456'
@@ -54,7 +60,7 @@ describe('User Service', () => {
 
     const email = 'jog@gmail.com'
 
-    await service.createUser({
+    await sut.createUser({
       name: 'Joh Doe',
       email,
       password: '123456'
@@ -68,8 +74,9 @@ describe('User Service', () => {
     //   password: '123456'
     // })
 
+    //sempre que usar expect usar await 
     await expect(
-      service.createUser({
+      sut.createUser({
         name: 'Joh Doe',
         email,
         password: '123456'
