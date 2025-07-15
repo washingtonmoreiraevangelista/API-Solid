@@ -1,5 +1,5 @@
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
-import { PrismaUsersRepository } from '@/repository/prisma/prisma-user.repository'
+import { PrismaUsersRepository } from '@/repository/prisma-user.repository'
 import { User } from '@prisma/client'
 
 

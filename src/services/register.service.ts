@@ -1,7 +1,7 @@
 import { User } from '@/interface/user'
 import { hash } from 'bcryptjs'
 import { UserError } from '@/errors/user.error'
-import { PrismaUsersRepository } from '@/repository/prisma/prisma-user.repository'
+import { PrismaUsersRepository } from '@/repository/prisma-user.repository'
 
 
 // 	Regras de negócio e lógica da aplicação
