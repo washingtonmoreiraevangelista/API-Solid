@@ -1,5 +1,5 @@
 import { UserError } from '@/errors/user.error'
-import { InMemoryRepository } from '@/test/memory.repository'
+import { InMemoryRepository } from '@/test/in-memory.repository'
 import { compare } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { Service } from '../../services/register.service'
@@ -13,8 +13,6 @@ let sut: Service
 let usersRepository: InMemoryRepository
 
 describe('User Service', () => {
-
-  let service: Service
 
   beforeEach(() => {
     usersRepository = new InMemoryRepository()
@@ -48,9 +46,7 @@ describe('User Service', () => {
 
     const isPasswordHashed = await compare('123456', user.password_hash)
     expect(isPasswordHashed).toBe(true)
-    console.log(user.password_hash
-
-    )
+    // console.log(user.password_hash)
 
   })
 
@@ -60,7 +56,7 @@ describe('User Service', () => {
 
     const email = 'jog@gmail.com'
 
-    await sut.createUser({
+    sut.createUser({
       name: 'Joh Doe',
       email,
       password: '123456'

@@ -1,6 +1,6 @@
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
 import { GetUserProfileService } from '@/services/get-user-profile.service'
-import { InMemoryRepository } from '@/test/memory.repository'
+import { InMemoryRepository } from '@/test/in-memory.repository'
 import { hash } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
 
@@ -27,7 +27,7 @@ describe('Get user profile ', () => {
       userId: creatUser.id,
     })
 
-     expect(user.id).toEqual(expect.any(String))
+    expect(user.id).toEqual(expect.any(String))
 
   })
 
@@ -35,7 +35,7 @@ describe('Get user profile ', () => {
   it('should be able to get user profile with wrong id', async () => {
 
 
-   await expect(() =>
+    await expect(() =>
       sut.execute({
         userId: 'non-existing-id',
       })

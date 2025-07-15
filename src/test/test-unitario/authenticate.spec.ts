@@ -1,6 +1,6 @@
 import { InvalidCredentialError } from '@/errors/invalid-credential-error'
 import { AuthenticateService } from '@/services/authenticate.service'
-import { InMemoryRepository } from '@/test/memory.repository'
+import { InMemoryRepository } from '@/test/in-memory.repository'
 import { hash } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
 
@@ -35,7 +35,7 @@ describe('Authenticate Service', () => {
   it('should be able to authenticate with wron email', async () => {
 
 
-    expect(() =>
+    await expect(() =>
       sut.execute({
         email: 'daia@gmail.com',
         password: '123456'
