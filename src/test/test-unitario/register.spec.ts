@@ -1,5 +1,5 @@
 import { UserError } from '@/errors/user.error'
-import { InMemoryRepository } from '@/test/in-memory.repository'
+import { InMemoryRepository } from '@/test/in- memory/in-memory.repository'
 import { compare } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { Service } from '../../services/register.service'

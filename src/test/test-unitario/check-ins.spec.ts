@@ -1,10 +1,10 @@
-import { CheckinUserService } from '@/services/check-ins.service'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { InMemoryCheckInsRepository } from '../in-memory-check-ins.repository'
-import { InMemoryGymsRepository } from '../in-memory-gyms.repository'
-import { Decimal } from '@prisma/client/runtime/library'
-import { MaxNumberOfCheckInsError } from '@/errors/max-number-of-check-ins-error'
 import { MaxDistanceError } from '@/errors/max-distance-error'
+import { MaxNumberOfCheckInsError } from '@/errors/max-number-of-check-ins-error'
+import { CheckinUserService } from '@/services/check-ins.service'
+import { Decimal } from '@prisma/client/runtime/library'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { InMemoryCheckInsRepository } from '../in- memory/in-memory-check-ins.repository'
+import { InMemoryGymsRepository } from '../in- memory/in-memory-gyms.repository'
 
 
 let checkInsRepository: InMemoryCheckInsRepository
@@ -23,7 +23,7 @@ describe('Check-in user service', () => {
       description: '',
       phone: '',
       latitude: -27.2092052,
-      longitude:-49.6401091,
+      longitude: -49.6401091,
     })
 
 

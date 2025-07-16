@@ -1,4 +1,4 @@
-import { CheckinsRepository } from '@/repository/check-ins.repository'
+import { CheckinsRepository } from '@/repository/prisma-check-ins.repository'
 
 interface GetUserMetricsRequest {
   userId: string
@@ -14,7 +14,7 @@ export class GetUserMetricsService {
     private checkinsRepository: CheckinsRepository,
   ) { }
 
-  async execute({ userId}: GetUserMetricsRequest): Promise<GetUserMetricsResponse> {
+  async execute({ userId }: GetUserMetricsRequest): Promise<GetUserMetricsResponse> {
 
     const checkInsCount = await this.checkinsRepository.countByUserId(userId)
 

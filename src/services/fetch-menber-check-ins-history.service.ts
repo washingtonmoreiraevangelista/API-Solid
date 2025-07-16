@@ -1,4 +1,4 @@
-import { CheckinsRepository } from '@/repository/check-ins.repository'
+import { CheckinsRepository } from '@/repository/prisma-check-ins.repository'
 import { CheckIn } from '@prisma/client'
 
 
@@ -12,15 +12,15 @@ interface CheckinUserResponse {
   checkIns: CheckIn[]
 }
 
-export class FetchCheckinUserService {
+export class FetchCheckinUser{
 
   constructor(
     private checkinsRepository: CheckinsRepository,
   ) { }
 
-  async execute({ userId,page}: FetchUserCheckInsRequest): Promise<CheckinUserResponse> {
+  async execute({ userId, page }: FetchUserCheckInsRequest): Promise<CheckinUserResponse> {
 
-    
+
     const checkIns = await this.checkinsRepository.findManyByUserId(userId, page)
 
     return {

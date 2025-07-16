@@ -1,4 +1,4 @@
-import { makeService } from '@/factories/centerService'
+import { registerUse } from '@/factories/make-register'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -26,7 +26,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
   try {
 
-    const service = makeService()
+    const service = registerUse()
 
     await service.createUser({
       name,

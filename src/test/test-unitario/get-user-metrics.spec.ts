@@ -1,6 +1,6 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { InMemoryCheckInsRepository } from '../in-memory-check-ins.repository'
 import { GetUserMetricsService } from '@/services/get-user-metrics.service'
+import { beforeEach, describe, expect, it } from 'vitest'
+import { InMemoryCheckInsRepository } from '../in- memory/in-memory-check-ins.repository'
 
 
 let checkInsRepository: InMemoryCheckInsRepository

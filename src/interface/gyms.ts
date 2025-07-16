@@ -5,3 +5,8 @@ export interface GymRequest {
   latitude: number
   longitude: number
 }
+
+export interface FindManyNearParams {
+  latitude: number
+  longitude: number
+}

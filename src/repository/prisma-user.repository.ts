@@ -1,18 +1,16 @@
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
 
-// responsável por acessar e manipular os dados no banco de dado
-// segue o padrão repository
-// é uma camada de abstração entre a aplicação e o banco de dados
-// permite que a lógica de acesso aos dados seja separada da lógica de negócio
-// facilita a manutenção e testes da aplicação
-// pode ser usado com qualquer banco de dados, não apenas com o Prisma
-// caso queria trocar o banco de dados, basta trocar a implementação do repositório
-// não precisa mudar a lógica de negócio da aplicação
+export class UsersRepository {
 
+  // create user
+  async create(data: Prisma.UserCreateInput) {
+    const user = await prisma.user.create({ data })
 
-export class PrismaUsersRepository {
+    return user
+  }
 
+  // find user by email
   async findByEmail(email: string) {
     const user = await prisma.user.findUnique({
       where: {
@@ -22,6 +20,8 @@ export class PrismaUsersRepository {
 
     return user
   }
+
+  // find user by id
   async findById(id: string) {
     const user = await prisma.user.findUnique({
       where: {
@@ -32,11 +32,14 @@ export class PrismaUsersRepository {
     return user
   }
 
-  async create(data: Prisma.UserCreateInput) {
-    const user = await prisma.user.create({ data })
-
-    return user
-  }
-
 }
+
+// responsável por acessar e manipular os dados no banco de dado
+// segue o padrão repository
+// é uma camada de abstração entre a aplicação e o banco de dados
+// permite que a lógica de acesso aos dados seja separada da lógica de negócio
+// facilita a manutenção e testes da aplicação
+// pode ser usado com qualquer banco de dados, não apenas com o Prisma
+// caso queria trocar o banco de dados, basta trocar a implementação do repositório
+// não precisa mudar a lógica de negócio da aplicação
 

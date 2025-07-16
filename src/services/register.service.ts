@@ -1,7 +1,7 @@
 import { User } from '@/interface/user'
 import { hash } from 'bcryptjs'
 import { UserError } from '@/errors/user.error'
-import { PrismaUsersRepository } from '@/repository/prisma-user.repository'
+import { UsersRepository } from '@/repository/prisma-user.repository'
 
 
 // 	Regras de negócio e lógica da aplicação
@@ -14,11 +14,11 @@ import { PrismaUsersRepository } from '@/repository/prisma-user.repository'
 
 // Decide o que acontece com os dados recebidos do controller.
 
-export class Service {
+export class RegisterUser {
 
   //inverte dependencia e poder migrar facilmente para outro banco de dados usamos classes com solid
   constructor(
-    private usersRepository: PrismaUsersRepository
+    private usersRepository: UsersRepository
   ) { }
 
 

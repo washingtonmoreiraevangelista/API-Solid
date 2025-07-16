@@ -1,9 +1,9 @@
-import { GymsRepository } from '@/repository/gyms.repository'
 import { GymRequest } from '@/interface/gyms'
+import { GymsRepository } from '@/repository/prisma-gyms.repository'
 
 
 
-export class CreateGymsService {
+export class CreateGyms {
 
   constructor(
     private gymsRepository: GymsRepository

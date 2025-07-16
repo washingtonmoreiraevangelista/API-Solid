@@ -1,6 +1,6 @@
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
 import { GetUserProfileService } from '@/services/get-user-profile.service'
-import { InMemoryRepository } from '@/test/in-memory.repository'
+import { InMemoryRepository } from '@/test/in- memory/in-memory.repository'
 import { hash } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
 

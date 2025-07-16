@@ -1,17 +1,7 @@
 import { InvalidCredentialError } from '@/errors/invalid-credential-error'
-import { UsersRepository } from '@/repository/user.repository'
-import { User } from '@prisma/client'
+import { AuthenticateRequest, AuthenticateResponse } from '@/interface/authenticate'
+import { UsersRepository } from '@/repository/prisma-user.repository'
 import { compare } from 'bcryptjs'
-
-
-interface AuthenticateRequest {
-  email: string
-  password: string
-}
-
-interface AuthenticateResponse {
-  user: User
-}
 
 export class AuthenticateService {
 

@@ -1,24 +1,13 @@
 import { MaxDistanceError } from '@/errors/max-distance-error'
 import { MaxNumberOfCheckInsError } from '@/errors/max-number-of-check-ins-error'
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
-import { CheckinsRepository } from '@/repository/check-ins.repository'
-import { GymsRepository } from '@/repository/gyms.repository'
+import { CheckinUserRequest, CheckinUserResponse } from '@/interface/check-ins.interface'
+import { CheckinsRepository } from '@/repository/prisma-check-ins.repository'
+import { GymsRepository } from '@/repository/prisma-gyms.repository'
 import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates'
-import { CheckIn } from '@prisma/client'
 
 
-interface CheckinUserRequest {
-  userId: string
-  gymId: string
-  userLatitude: number
-  userLongitude: number
-}
-
-interface CheckinUserResponse {
-  checkIn: CheckIn
-}
-
-export class CheckinUserService {
+export class CheckinUser {
 
   constructor(
     private checkinsRepository: CheckinsRepository,
@@ -27,19 +16,18 @@ export class CheckinUserService {
 
   async execute({ userId, gymId, userLatitude, userLongitude }: CheckinUserRequest): Promise<CheckinUserResponse> {
 
-    // verificar se academia existe
+    // check if gym exists
     const gym = await this.gymsRepository.findById(gymId)
 
     if (!gym) {
       throw new ResourceNotFoundError()
     }
 
-    //calcular a distância entre o usuário e a academia
-
+    //calculate the distance between the user and the gym
     const distance = getDistanceBetweenCoordinates(
-      // coordenadas do usuário
+      // user coordinates
       { latitude: userLatitude, longitude: userLongitude },
-      // coordenadas da academia
+      // gym coordinates
       { latitude: gym.latitude.toNumber(), longitude: gym.longitude.toNumber() },
     )
 
@@ -49,12 +37,14 @@ export class CheckinUserService {
       throw new MaxDistanceError()
     }
 
+    // vcheck if user has already checked in today
     const checkInOnSameDate = await this.checkinsRepository.findByUserIdOnDate(userId, new Date())
 
     if (checkInOnSameDate) {
       throw new MaxNumberOfCheckInsError()
     }
 
+    // create check-in
     const checkIn = await this.checkinsRepository.create({
       user_id: userId,
       gym_id: gymId,

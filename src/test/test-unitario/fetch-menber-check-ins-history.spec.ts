@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { InMemoryCheckInsRepository } from '../in-memory-check-ins.repository'
+import { beforeEach, describe, expect, it } from 'vitest'
+import { InMemoryCheckInsRepository } from '../in- memory/in-memory-check-ins.repository'
 
 import { FetchCheckinUserService } from '@/services/fetch-menber-check-ins-history.service'
 
@@ -29,7 +29,7 @@ describe('Fetch heck-in history', () => {
     const { checkIns } = await sut.execute({
       userId: 'user-01',
       page: 1,
-    
+
     })
 
     expect(checkIns).toHaveLength(2)
@@ -42,7 +42,7 @@ describe('Fetch heck-in history', () => {
 
   it('should be able to fetch paginated check in', async () => {
 
-    for (let i = 1 ; i <= 22; i++) {
+    for (let i = 1; i <= 22; i++) {
       await checkInsRepository.create({
         gym_id: `gym-${i}`,
         user_id: 'user-01',
