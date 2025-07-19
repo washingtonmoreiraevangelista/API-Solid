@@ -1,8 +1,9 @@
 import { InvalidCredentialError } from '@/errors/invalid-credential-error'
 import { AuthenticateService } from '@/services/authenticate.service'
-import { InMemoryRepository } from '@/test/in- memory/in-memory.repository'
 import { hash } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { InMemoryRepository } from '../in- memory/in-memory.repository'
+
 
 let sut: AuthenticateService
 let usersRepository: InMemoryRepository

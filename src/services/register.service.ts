@@ -44,3 +44,7 @@ export class RegisterUser {
 
 
 }
+
+export {
+  UsersRepository // Manipula dados
+}

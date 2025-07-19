@@ -1,6 +1,6 @@
 import { MaxDistanceError } from '@/errors/max-distance-error'
 import { MaxNumberOfCheckInsError } from '@/errors/max-number-of-check-ins-error'
-import { CheckinUserService } from '@/services/check-ins.service'
+import { CheckinUser } from '@/services/check-ins.service'
 import { Decimal } from '@prisma/client/runtime/library'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { InMemoryCheckInsRepository } from '../in- memory/in-memory-check-ins.repository'
@@ -8,14 +8,14 @@ import { InMemoryGymsRepository } from '../in- memory/in-memory-gyms.repository'
 
 
 let checkInsRepository: InMemoryCheckInsRepository
-let sut: CheckinUserService
+let sut: CheckinUser
 let gymsRepository: InMemoryGymsRepository
 
 describe('Check-in user service', () => {
   beforeEach(async () => {
     gymsRepository = new InMemoryGymsRepository()
     checkInsRepository = new InMemoryCheckInsRepository()
-    sut = new CheckinUserService(checkInsRepository, gymsRepository)
+    sut = new CheckinUser(checkInsRepository, gymsRepository)
 
     await gymsRepository.create({
       id: 'gym-01',
@@ -49,7 +49,7 @@ describe('Check-in user service', () => {
 
 
   it('should not be able to check in twice in the same day', async () => {
-    await gymsRepository.items.push({
+     gymsRepository.items.push({
       id: 'gym-01',
       title: 'Academia',
       description: '',
@@ -78,7 +78,7 @@ describe('Check-in user service', () => {
   })
 
   it('should be able to check in again on a different day', async () => {
-    await gymsRepository.items.push({
+     gymsRepository.items.push({
       id: 'gym-01',
       title: 'Academia',
       description: '',

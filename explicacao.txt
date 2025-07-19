@@ -1,0 +1,6 @@
+Teste end-to-end:
+
+1.banco separado para testes
+2.banco separado para producao
+3.banco separado para desenvolvimento
+4.banco separado para suite de testes

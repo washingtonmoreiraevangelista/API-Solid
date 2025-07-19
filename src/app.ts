@@ -1,10 +1,16 @@
 import fastify from 'fastify'
-import { appRoutes } from './routes/routes'
 import { setGlobalErrorHandler } from './errors/global.error'
+import fastifyJwt from '@fastify/jwt'
+import { env } from './env'
+import { routes } from './routes/routes'
 
 export const app = fastify()
+app.register(fastifyJwt, {
+secret: env.JWT_SECRET,
+})
 
 
-app.register(appRoutes)
+app.register(routes)
+
 
 setGlobalErrorHandler(app)

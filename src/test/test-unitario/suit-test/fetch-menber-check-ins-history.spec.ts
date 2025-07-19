@@ -1,16 +1,14 @@
+import { FetchCheckinUser } from '@/services/fetch-menber-check-ins-history.service'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryCheckInsRepository } from '../in- memory/in-memory-check-ins.repository'
 
-import { FetchCheckinUserService } from '@/services/fetch-menber-check-ins-history.service'
-
-
 let checkInsRepository: InMemoryCheckInsRepository
-let sut: FetchCheckinUserService
+let sut: FetchCheckinUser
 
 describe('Fetch heck-in history', () => {
   beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
-    sut = new FetchCheckinUserService(checkInsRepository)
+    sut = new FetchCheckinUser(checkInsRepository)
 
   })
 
@@ -34,7 +32,7 @@ describe('Fetch heck-in history', () => {
 
     expect(checkIns).toHaveLength(2)
 
-    await expect(checkIns).toEqual([
+     expect(checkIns).toEqual([
       expect.objectContaining({ gym_id: 'gym-01' }),
       expect.objectContaining({ gym_id: 'gym-02' }),
     ])

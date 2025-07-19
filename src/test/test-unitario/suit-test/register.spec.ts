@@ -1,22 +1,22 @@
 import { UserError } from '@/errors/user.error'
-import { InMemoryRepository } from '@/test/in- memory/in-memory.repository'
 import { compare } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { Service } from '../../services/register.service'
+import { RegisterUser } from '../../../services/register.service'
+import { InMemoryRepository } from '../in- memory/in-memory.repository'
 
 // test unitario: nunca deve depender de banco de dados ou api externa
 // o teste deve ser isolado, não deve depender de banco de dados ou api externa
 //it.only permite que o teste seja executado isoladamente, sem executar os outros testes
 //it.skip permite que o teste seja pulado, sem executá-lo
 
-let sut: Service
-let usersRepository: InMemoryRepository
+let sut: RegisterUser
+let userRepository: InMemoryRepository
 
 describe('User Service', () => {
 
   beforeEach(() => {
-    usersRepository = new InMemoryRepository()
-    sut = new Service(usersRepository)
+    userRepository = new InMemoryRepository()
+    sut = new RegisterUser(userRepository)
 
   })
 
@@ -46,7 +46,6 @@ describe('User Service', () => {
 
     const isPasswordHashed = await compare('123456', user.password_hash)
     expect(isPasswordHashed).toBe(true)
-    // console.log(user.password_hash)
 
   })
 

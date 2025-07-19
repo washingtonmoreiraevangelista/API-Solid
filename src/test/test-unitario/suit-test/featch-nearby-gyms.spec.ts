@@ -1,15 +1,14 @@
-import { FeatchSearchGymsService } from '@/services/featch-nearbt-gyms.service'
+import { FeatchSearchGyms } from '@/services/featch-nearbt-gyms.service'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryGymsRepository } from '../in- memory/in-memory-gyms.repository'
 
-
 let gymsRepository: InMemoryGymsRepository
-let sut: FeatchSearchGymsService
+let sut: FeatchSearchGyms
 
 describe('Fetch Nearby Gyms use case', () => {
   beforeEach(async () => {
     gymsRepository = new InMemoryGymsRepository()
-    sut = new FeatchSearchGymsService(gymsRepository)
+    sut = new FeatchSearchGyms(gymsRepository)
 
   })
 

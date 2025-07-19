@@ -15,11 +15,21 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
 
     const service = makeAuthenticate()
 
-    await service.execute({
+    const { user } = await service.execute({
       email,
       password,
-    }
-    )
+    })
+
+    // gerar token, obs: não colocar senha ou dados sensiveis no token o payload nao e criptografado
+    const token = await reply.jwtSign({}, {
+      sign: {
+        sub: user.id,
+      },
+    })
+
+    return reply.status(200).send({
+      token,
+    })
 
   } catch (error) {
 
@@ -29,8 +39,5 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
 
     throw error
   }
-
-  return reply.status(200).send()
-
 
 } 

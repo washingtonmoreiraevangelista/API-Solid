@@ -3,7 +3,6 @@ import { ValidateUserService } from '@/services/validate-check-ins.service'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { InMemoryCheckInsRepository } from '../in- memory/in-memory-check-ins.repository'
 
-
 let checkInsRepository: InMemoryCheckInsRepository
 let sut: ValidateUserService
 

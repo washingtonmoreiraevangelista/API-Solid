@@ -1,17 +1,17 @@
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error'
-import { GetUserProfileService } from '@/services/get-user-profile.service'
-import { InMemoryRepository } from '@/test/in- memory/in-memory.repository'
+import { GetUserProfile } from '@/services/get-user-profile.service'
 import { hash } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { InMemoryRepository } from '../in- memory/in-memory.repository'
 
-let sut: GetUserProfileService
+let sut: GetUserProfile
 let usersRepository: InMemoryRepository
 
 describe('Get user profile ', () => {
 
   beforeEach(() => {
     usersRepository = new InMemoryRepository()
-    sut = new GetUserProfileService(usersRepository)
+    sut = new GetUserProfile(usersRepository)
 
   })
 
