@@ -1,0 +1,25 @@
+name: Run Unit Tests
+
+on: [push]
+
+jobs:
+  run-unit-tests:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - users: actions/checkout@v3
+
+      - users: actions/setup-node@v3
+        with:
+          node-version: 22
+          cach: 'npm'
+
+      - run: npm ci
+      
+      - run: npm run test
+
+
+
+
+
