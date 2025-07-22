@@ -10,7 +10,8 @@ interface FeatchSearchGymsResponse {
   gyms: Gym[]
 }
 
-export class FeatchSearchGyms {
+// buscar academias próximas a uma localização geográfica
+export class FetchSearchGyms {
   constructor(private gymsRepository: GymsRepository) { }
   async execute({
     userLatitude,

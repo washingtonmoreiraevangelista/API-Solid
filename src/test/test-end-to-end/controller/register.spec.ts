@@ -27,11 +27,4 @@ describe('Register (e23)', () => {
     expect(response.statusCode).toEqual(201)
   })
 
-
-
-
-
-
-
-
 })

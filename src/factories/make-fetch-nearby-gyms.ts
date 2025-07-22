@@ -1,10 +1,10 @@
 import { GymsRepository } from '@/repository/prisma-gyms.repository'
-import { FeatchSearchGyms } from '@/services/featch-nearbt-gyms.service'
+import { FetchSearchGyms } from '@/services/featch-nearbt-gyms.service'
 
 export function makeFeatchNearbyGyms() {
 
   const gymsRepository = new GymsRepository()
-  const featchNearbyGyms = new FeatchSearchGyms(gymsRepository)
+  const featchNearbyGyms = new FetchSearchGyms(gymsRepository)
 
   return featchNearbyGyms
 

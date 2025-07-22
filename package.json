@@ -10,13 +10,14 @@
     "test": "vitest run --project unit",
     "test:e2e": "vitest run --project e2e",
     "test:watch": "vitest --project unit",
-    "test:e2e:watch": "vitest --project --project e2e",
+    "test:e2e:watch": "vitest --project e2e",
     "test:ui": "vitest --ui"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/cookie": "11.0.2",
     "@fastify/jwt": "9.1.0",
     "@prisma/client": "6.12.0",
     "@types/node": "24.0.14",
